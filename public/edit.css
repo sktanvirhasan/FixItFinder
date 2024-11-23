@@ -1,0 +1,270 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.signupcustomerform{
+    display:flex;
+    height:600px;
+}
+.signupcustomertext{
+    display:list-item;
+    width:40%;
+    text-align: center;
+    background-color: darkblue;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    color:azure;
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 700;
+    padding-top: 300px;
+}
+.customersignupform {
+    background-image: url("./images/online-service-concept-serviceman-repairman-technician-concept-flat-illustration_720185-2803.jpg");
+    object-fit: cover;
+    background-repeat: no-repeat;
+    height: 450px;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column; /* Change to column for vertical stacking */
+    align-items: center; /* Center items */
+}
+.uploadimg{
+    position: relative;
+    display: inline-block;
+    margin-top: 30px;
+}
+.file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.file-label {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.file-label:hover {
+    background-color: #0056b3;
+}
+
+.file-input:focus + .file-label,
+.file-input + .file-label:focus {
+    outline: 1px solid #0056b3;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+.file-url-input {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+}
+.custoersignupform{
+    display:flex;
+    justify-content: center;
+}
+.infobox {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Align items vertically */
+    margin-top: 20px; /* Space between fields */
+}
+
+.infobox .label {
+    flex: 1; /* Take up equal space */
+    font-weight: 900; /* Make labels bold */
+    margin-right: 5rem; /* Space between label and input */
+}
+
+.info-field {
+    padding: 10px; /* Add padding for input fields */
+    border-radius: 10px; /* Rounded corners for input fields */
+    border: 1px solid #ccc; /* Border color */
+    width: 300px; /* Width of input fields */
+}
+
+.selctareasubarea{
+    margin-top: 40px;
+    font-weight: 900;
+}
+#mainArea,#subArea,#Profession,#religion{
+    width:30%;
+}
+#mainArea::-ms-expand,#subArea::-ms-expand,#religion::-ms-expand{
+    display:none;
+}
+.religion{
+    margin-top: 20px;
+    font-weight: 900;
+}
+.experties{
+    margin-top: 40px;
+    font-weight: 900;
+}
+
+
+
+
+/* Button container styling */
+.buttons {
+  
+    position: absolute; /* Absolute positioning to detach the button from the normal flow */
+    right: 150px; /* Moves the button 30px from the right edge */
+    bottom: 80px; /* Moves the button 20px from the bottom of the container */
+}
+
+
+
+
+
+
+
+
+/* Base button styling */
+button {
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: normal; /* Remove bold */
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-transform: none; /* Remove uppercase */
+    font-family: 'Times New Roman', Times, serif; /* You can choose a different font if needed */
+}
+
+
+
+/* Save button styling */
+#saveChanges {
+    background-image: linear-gradient(to right, #36d1dc, #5b86e5);
+}
+
+#save:hover {
+    background-image: linear-gradient(to right, #65e0f3, #7aa9f8);
+    box-shadow: 0 8px 15px rgba(91, 134, 229, 0.5);
+}
+
+/* Button press effect */
+button:active {
+    transform: scale(0.98);
+}
+
+
+.contact{
+    margin-top: 70px;
+    color: azure;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+.contact a{
+    color: azure;
+    text-decoration: none;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000;
+    display: none; /* Initially hidden */
+}
+
+.notification.error {
+    background-color: #f44336; /* Red */
+}
+@media(max-width:650px) and (min-width:200px){
+    .signupcustomerform{
+        display:flex;
+        height:640px;
+    }
+    .signupcustomertext{
+        display:list-item;
+        width:40%;
+        text-align: center;
+        background-color: darkblue;
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 25px;
+        color:azure;
+        font-size: 1.2rem;
+        text-align: center;
+        font-weight: 700;
+        padding-top: 300px;
+    }
+    .uploadimg{
+        margin-top: 30px;
+        font-weight: 900;
+        margin-top: 20px;
+        background-color:black;
+        border: 2px solid white;
+        color:white;
+        height:30px;
+        width:75px;
+    }
+    .custoersignupform{
+        background-image: url("./images/online-service-concept-serviceman-repairman-technician-concept-flat-illustration_720185-2803.jpg");
+        object-fit: cover;
+        background-repeat: no-repeat;
+        height:775px;
+        width:60%;
+    }
+    .custoersignupform{
+        display:flex;
+        justify-content: center;
+    }
+    .info-field{
+        margin-top: 20px;
+        height:30px;
+        border-radius:10px;
+        width:50px;
+    }
+    .selctareasubarea{
+        margin-top: 20px;
+        font-weight: 900;
+    }
+    .experties{
+        margin-top: 20px;
+        font-weight: 900;
+    }
+    button{
+        background-color: rgb(6, 6, 52);
+        color:azure;
+        font-weight: 500;
+        width:50px;
+        height:30px;
+        border-radius: 10px;
+        margin-top: 15px;
+    }
+   
+    .contact{
+        margin-top: 70px;
+        color: azure;
+        font-weight: 700;
+        font-size: 0.7rem;
+    }
+    .contact a{
+        color: azure;
+        text-decoration: none;
+    }
+}
+
+
+
+

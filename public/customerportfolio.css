@@ -1,0 +1,186 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.techportfolio{
+    display:flex;
+    height:640px;
+}
+.techportfoliotext{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width:40%;
+    text-align: center;
+    background-color: darkblue;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    color:azure;
+    font-size: 3rem;
+    font-weight: 700;
+    padding-top: 10px;
+}
+.contact{
+    margin-top: 70px;
+    color: azure;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+.contact a{
+    color: azure;
+    text-decoration: none;
+}
+.techprofile{
+    background-image: url("./images/profile1.jpg");
+    object-fit: cover;
+    background-repeat: no-repeat;
+    height:775px;
+    width:60%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    height:640px;
+}
+.dp{
+  height:160px;
+  width:160px;
+  border-radius: 50%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  border: black solid 3px
+}
+img{
+  height:160px;
+  width:160px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+  .name{
+    margin-top: 30px;
+    text-align: center;
+    font-weight: 700;
+    color:darkblue;
+  }
+  .uname,.cnum,.cemail,.pass,.religion{
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 400;
+    color:rgb(27, 26, 26);
+  }
+  .address{
+    margin-top: 20px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width:300px;
+  }
+  .area,.subarea{
+    text-align: center;
+    font-weight: 600;
+  }
+  .btns,.logout{
+    display:flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  button{
+    background-color: rgb(5, 14, 95);
+    width:70px;
+    color:azure;
+    border-radius: 10px;
+  }
+  button:hover{
+    cursor: pointer;
+  }
+  .taskbar{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    width:100%;
+    height:50px;
+  }
+  a{
+    font-size: 1.2rem;
+    color:aliceblue;
+    text-decoration: none;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* Position the message button on the right side */
+  .buttons {
+    position: absolute; /* Absolute positioning to detach the button from the normal flow */
+    right: 150px; /* Moves the button 30px from the right edge */
+    bottom: 80px; /* Moves the button 20px from the bottom of the container */
+}
+
+/* Style the button */
+.btn {
+  background-color: #5e4caf;
+  color: white;
+  padding: 10px 30px; /* Adds enough padding for the text */
+  border: none;
+  cursor: pointer;
+  font-size: 20px; /* Ensure text fits well inside the button */
+  border-radius: 5px; /* Optional: Adds rounded corners */
+  width: auto; /* Allow button to resize based on content */
+  height: 40px; /* Set a fixed height for the button */
+  display: inline-block;
+}
+
+/* Add hover effect for better user interaction */
+.btn:hover {
+  background-color: #4586a0; /* Slightly darker shade on hover */
+}
+
+
+.edit-profile {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding for button */
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline from link */
+  display: inline-block; /* Align properly */
+  font-size: 16px; /* Font size */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  position: absolute; /* Positioning for the upper right corner */
+  top: 20px; /* Distance from the top */
+  right: 20px; /* Distance from the right */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+.edit-profile:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+

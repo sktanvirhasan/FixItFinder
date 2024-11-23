@@ -1,0 +1,201 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.signupcustomerform{
+    display:flex;
+    height:640px;
+}
+.signupcustomertext{
+    display:list-item;
+    width:40%;
+    text-align: center;
+    background-color: darkblue;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    color:azure;
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 700;
+    padding-top: 300px;
+}
+.custoersignupform{
+    background-image: url("./images/online-service-concept-serviceman-repairman-technician-concept-flat-illustration_720185-2803.jpg");
+    object-fit: cover;
+    background-repeat: no-repeat;
+    height:640px;
+    width:60%;
+}
+.uploadimg{
+    position: relative;
+    display: inline-block;
+    margin-top: 30px;
+}
+.file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.file-label {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.file-label:hover {
+    background-color: #0056b3;
+}
+
+.file-input:focus + .file-label,
+.file-input + .file-label:focus {
+    outline: 1px solid #0056b3;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+.file-url-input {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+}
+.custoersignupform{
+    display:flex;
+    justify-content: center;
+}
+.info-field{
+    margin-top: 40px;
+    height:30px;
+    border-radius:10px;
+    width:300px;
+}
+.selctareasubarea{
+    margin-top: 40px;
+    font-weight: 900;
+}
+#mainArea,#subArea,#Profession,#religion{
+    width:30%;
+}
+#mainArea::-ms-expand,#subArea::-ms-expand,#religion::-ms-expand{
+    display:none;
+}
+.religion{
+    margin-top: 20px;
+    font-weight: 900;
+}
+.experties{
+    margin-top: 40px;
+    font-weight: 900;
+}
+button{
+    background-color: rgb(6, 6, 52);
+    color:azure;
+    font-weight: 500;
+    width:50px;
+    height:30px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+button:hover{
+    cursor:pointer
+}
+.coutionmsg{
+    margin-top: 15px;
+    font-weight: 700;
+    color:black;
+}
+.contact{
+    margin-top: 70px;
+    color: azure;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+.contact a{
+    color: azure;
+    text-decoration: none;
+}
+@media(max-width:650px) and (min-width:200px){
+    .signupcustomerform{
+        display:flex;
+        height:640px;
+    }
+    .signupcustomertext{
+        display:list-item;
+        width:40%;
+        text-align: center;
+        background-color: darkblue;
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 25px;
+        color:azure;
+        font-size: 1.2rem;
+        text-align: center;
+        font-weight: 700;
+        padding-top: 300px;
+    }
+    .uploadimg{
+        margin-top: 30px;
+        font-weight: 900;
+        margin-top: 20px;
+        background-color:black;
+        border: 2px solid white;
+        color:white;
+        height:30px;
+        width:75px;
+    }
+    .custoersignupform{
+        background-image: url("./images/online-service-concept-serviceman-repairman-technician-concept-flat-illustration_720185-2803.jpg");
+        object-fit: cover;
+        background-repeat: no-repeat;
+        height:775px;
+        width:60%;
+    }
+    .custoersignupform{
+        display:flex;
+        justify-content: center;
+    }
+    .info-field{
+        margin-top: 20px;
+        height:30px;
+        border-radius:10px;
+        width:50px;
+    }
+    .selctareasubarea{
+        margin-top: 20px;
+        font-weight: 900;
+    }
+    .experties{
+        margin-top: 20px;
+        font-weight: 900;
+    }
+    button{
+        background-color: rgb(6, 6, 52);
+        color:azure;
+        font-weight: 500;
+        width:50px;
+        height:30px;
+        border-radius: 10px;
+        margin-top: 15px;
+    }
+    .coutionmsg{
+        margin-top: 10px;
+        font-weight: 700;
+        color:darkblue;
+    }
+    .contact{
+        margin-top: 70px;
+        color: azure;
+        font-weight: 700;
+        font-size: 0.7rem;
+    }
+    .contact a{
+        color: azure;
+        text-decoration: none;
+    }
+}

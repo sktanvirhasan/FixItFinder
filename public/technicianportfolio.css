@@ -1,0 +1,178 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.techportfolio{
+  display:flex;
+  height:640px;
+}
+.techportfoliotext{
+display:flex;
+flex-direction: column;
+justify-content: space-evenly;
+width:40%;
+text-align: center;
+background-color: darkblue;
+border-top-right-radius: 25px;
+border-bottom-right-radius: 25px;
+color:azure;
+font-size: 3rem;
+font-weight: 700;
+padding-top: 10px;
+}
+.contact{
+  margin-top: 70px;
+  color: azure;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.contact a{
+  color: azure;
+  text-decoration: none;
+}
+.techprofile {
+background-image: url("./images/cp1.jpg");
+background-size: cover;
+background-position: center;
+height: 640px;
+width: 60%;
+display: flex;
+flex-direction: column;
+align-items: center;
+height: 640px;
+position: relative; /* Added this to help with absolute positioning of the button */
+}
+img{
+height:160px;
+width:160px;
+object-fit: cover;
+border-radius: 50%;
+}
+.taskbar{
+display:flex;
+justify-content: space-around;
+align-items: center;
+width:100%;
+height:50px;
+}
+.dp{
+  height:160px;
+  width:160px;
+  border-radius: 50%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  border: black solid 3px;
+}
+
+.file-input {
+width: 0.1px;
+height: 0.1px;
+opacity: 0;
+overflow: hidden;
+position: absolute;
+z-index: -1;
+}
+.file-label {
+display: inline-block;
+padding: 10px 20px;
+font-size: 16px;
+font-weight: 600;
+color: #fff;
+background-color: #007bff;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+.file-label:hover {
+background-color: #0056b3;
+}
+
+.file-input:focus + .file-label,
+.file-input + .file-label:focus {
+outline: 1px solid #0056b3;
+outline: -webkit-focus-ring-color auto 5px;
+}
+.name{
+  margin-top: 30px;
+  text-align: center;
+  font-weight: 700;
+  color:darkblue;
+}
+.uname,.cnum,.cemail,.pass,.prof,.religion{
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 800;
+  color:rgb(27, 26, 26);
+}
+button:hover{
+  cursor: pointer;
+}
+.address{
+  margin-top: 20px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  width:300px;
+}
+.area,.subarea{
+  text-align: center;
+  font-weight: 600;
+}
+.btns,.logout,.customermode{
+  display:flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+button{
+  background-color: rgb(5, 14, 95);
+  width:70px;
+  color:azure;
+  border-radius: 10px;
+}
+a{
+  font-size: 1.2rem;
+  color:aliceblue;
+  text-decoration: none;
+}
+
+/* Style the button */
+.btn {
+background-color: #5e4caf;
+color: white;
+padding: 10px 30px; /* Adds enough padding for the text */
+border: none;
+cursor: pointer;
+font-size: 20px; /* Ensure text fits well inside the button */
+border-radius: 5px; /* Optional: Adds rounded corners */
+width: auto; /* Allow button to resize based on content */
+height: 40px; /* Set a fixed height for the button */
+display: inline-block;
+}
+
+/* Add hover effect for better user interaction */
+.btn:hover {
+background-color: #4586a0; /* Slightly darker shade on hover */
+}
+
+.edit-profile {
+background-color: #4CAF50; /* Green background */
+color: white; /* White text color */
+padding: 10px 20px; /* Padding for button */
+text-align: center; /* Center text */
+text-decoration: none; /* Remove underline from link */
+display: inline-block; /* Align properly */
+font-size: 16px; /* Font size */
+border: none; /* No border */
+border-radius: 5px; /* Rounded corners */
+cursor: pointer; /* Pointer cursor on hover */
+position: absolute; /* Positioning for the upper right corner */
+top: 20px; /* Distance from the top */
+right: 20px; /* Distance from the right */
+transition: background-color 0.3s; /* Smooth transition */
+}
+
+.edit-profile:hover {
+background-color: #45a049; /* Darker green on hover */
+}
