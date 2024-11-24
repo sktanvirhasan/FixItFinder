@@ -12,44 +12,40 @@ document.getElementById('file-input').addEventListener('change', function(event)
   });
   
   function logout() {
-    // Helper function to get cookie by name
     function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-    }
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+  
+  const token = getCookie('token');
 
-    // Retrieve the token from the __vercel_live_token cookie
-    const token = getCookie('__vercel_live_token'); // Use the '__vercel_live_token' cookie name
+    fetch('/logout', {
+        method: 'POST',
+        headers: {
+            'Authorization': token,
+            'Content-Type': 'application/json'
+        }
+    }).then(response => response.json())
+      .then(data => {
+          if (data.message === 'Logout successful!') {
+            document.cookie = 'token=; path=/; Secure; HttpOnly; SameSite=Strict; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+              
+              // Clear the browser history to prevent back navigation
+              history.pushState(null, null, '/');
+              window.addEventListener('popstate', function(event) {
+                  history.pushState(null, null, '/');
+              });
 
-    // If the token is found, proceed with logout
-    if (token) {
-        fetch('/logout', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${token}`, // Pass the token as 'Bearer' in the Authorization header
-                'Content-Type': 'application/json'
-            }
-        }).then(response => response.json())
-          .then(data => {
-              if (data.message === 'Logout successful!') {
-                  // Remove the token cookie from the client
-                  document.cookie = '__vercel_live_token=; path=/; Secure; HttpOnly; SameSite=Strict; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-                  // Redirect to the home page or login page
-                  window.location.href = '/';
-              } else {
-                  alert(data.message); // Show error message if logout failed
-              }
-          })
-          .catch((error) => {
-              console.error('Error during logout:', error);
-              alert('An error occurred during logout. Please try again.');
-          });
-    } else {
-        alert('No token found. Please log in again.');
-    }
+              window.location.href = "/frontpage.html"; // Redirect to front page
+          } else {
+              alert(data.message); // Show the error message
+              
+              // Redirect to front page after showing the alert
+              window.location.href = "/frontpage.html";
+          }
+      });
 }
-
 
 
 

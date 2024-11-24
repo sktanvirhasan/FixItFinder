@@ -449,24 +449,12 @@ app.post('/login', async (req, res) => {
 
 //log out
 app.post('/logout', (req, res) => {
-  // Get the token from cookies
-  const token = req.cookies['__vercel_live_token']; // Use the exact cookie name '__vercel_live_token'
+  const token = req.headers['authorization'];
 
-  // Check if the token exists in active tokens (if you're using a manual tracking method)
   const tokenIndex = activeTokens.indexOf(token);
   if (tokenIndex > -1) {
-      // Remove the token from active tokens
-      activeTokens.splice(tokenIndex, 1);
-
-      // Clear the cookie from the client
-      res.clearCookie('__vercel_live_token', {
-          path: '/',
-          secure: true, // Only send the cookie over HTTPS
-          httpOnly: true, // Prevent JavaScript access to the cookie
-          sameSite: 'Strict' // Helps with CSRF protection
-      });
-
-      return res.json({ message: 'Logout successful!' });
+    activeTokens.splice(tokenIndex, 1);
+    return res.json({ message: 'Logout successful!' });
   }
 
   res.status(400).json({ message: 'Invalid token or already logged out' });
@@ -486,6 +474,34 @@ function authenticateToken(req, res, next) {
     req.user = user;
     next();
   });
+}
+
+// Example client-side logout
+function logout() {
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+
+const token = getCookie('token');
+
+  fetch('/logout', {
+    method: 'POST',
+    headers: {
+      'Authorization': token,
+      'Content-Type': 'application/json'
+    }
+  }).then(response => response.json())
+    .then(data => {
+      if (data.message === 'Logout successful!') {
+        document.cookie = 'token=; path=/; Secure; HttpOnly; SameSite=Strict; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+
+        window.location.href = '/';
+      } else {
+        alert(data.message);
+      }
+    });
 }
 
 
