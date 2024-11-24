@@ -12,10 +12,13 @@ document.getElementById('file-input').addEventListener('change', function(event)
   });
   
   function logout() {
-    const token = document.cookie
-    .split('; ')
-    .find((row) => row.startsWith('token='))
-    ?.split('=')[1];
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+  
+  const token = getCookie('token');
 
     fetch('/logout', {
         method: 'POST',
@@ -48,10 +51,13 @@ document.getElementById('file-input').addEventListener('change', function(event)
 
 // Check if the user is logged in
 function checkLoginStatus() {
-  const token = document.cookie
-    .split('; ')
-    .find((row) => row.startsWith('token='))
-    ?.split('=')[1];
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+const token = getCookie('token');
 
   if (!token) {
       // User is not logged in
@@ -65,10 +71,13 @@ function gotofrontpage() {
 }
 
 function gotoservicepage() {
-  const token = document.cookie
-    .split('; ')
-    .find((row) => row.startsWith('token='))
-    ?.split('=')[1];
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+const token = getCookie('token');
     
   if (token) {
       window.location.href = "/service_list_C.html"; // Proceed only if the token is present

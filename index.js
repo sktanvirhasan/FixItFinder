@@ -478,10 +478,13 @@ function authenticateToken(req, res, next) {
 
 // Example client-side logout
 function logout() {
-  const token = document.cookie
-  .split('; ')
-  .find((row) => row.startsWith('token='))
-  ?.split('=')[1];
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+
+const token = getCookie('token');
 
   fetch('/logout', {
     method: 'POST',
