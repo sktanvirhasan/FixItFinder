@@ -478,7 +478,11 @@ function authenticateToken(req, res, next) {
 
 // Example client-side logout
 function logout() {
-  const token = localStorage.getItem('token');
+  const token = document.cookie
+  .split('; ')
+  .find((row) => row.startsWith('token='))
+  ?.split('=')[1];
+
   fetch('/logout', {
     method: 'POST',
     headers: {
@@ -488,7 +492,8 @@ function logout() {
   }).then(response => response.json())
     .then(data => {
       if (data.message === 'Logout successful!') {
-        localStorage.removeItem('token');
+        document.cookie = 'token=; path=/; Secure; HttpOnly; SameSite=Strict; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+
         window.location.href = '/';
       } else {
         alert(data.message);

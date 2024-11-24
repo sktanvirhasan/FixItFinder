@@ -12,7 +12,11 @@ document.getElementById('file-input').addEventListener('change', function(event)
   });
   
   function logout() {
-    const token = localStorage.getItem('token');
+    const token = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('token='))
+    ?.split('=')[1];
+
     fetch('/logout', {
         method: 'POST',
         headers: {
@@ -22,7 +26,7 @@ document.getElementById('file-input').addEventListener('change', function(event)
     }).then(response => response.json())
       .then(data => {
           if (data.message === 'Logout successful!') {
-              localStorage.removeItem('token'); // Remove token from local storage
+            document.cookie = 'token=; path=/; Secure; HttpOnly; SameSite=Strict; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
               
               // Clear the browser history to prevent back navigation
               history.pushState(null, null, '/');
@@ -44,7 +48,11 @@ document.getElementById('file-input').addEventListener('change', function(event)
 
 // Check if the user is logged in
 function checkLoginStatus() {
-  const token = localStorage.getItem('token');
+  const token = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('token='))
+    ?.split('=')[1];
+
   if (!token) {
       // User is not logged in
       document.querySelector('.services button').disabled = true; // Disable "Our Services" button
@@ -57,12 +65,16 @@ function gotofrontpage() {
 }
 
 function gotoservicepage() {
-  const token = localStorage.getItem('token');
+  const token = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('token='))
+    ?.split('=')[1];
+    
   if (token) {
       window.location.href = "/service_list_C.html"; // Proceed only if the token is present
   } else {
       alert('You must be logged in to access services.');
-      window.location.href = "/frontpage.html";
+      window.location.href = "/";
   }
 }
 
