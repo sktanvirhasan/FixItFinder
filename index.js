@@ -406,101 +406,55 @@ app.post('/technicianregister', upload.single('profileImage'), async (req, res) 
 });
 
 //log in 
-app.use(cookieParser());
-app.use(cors({
-  origin: 'https://fix-it-finder-seven.vercel.app', // Allow requests from your Vercel app
-  credentials: true, // Allow cookies to be sent with requests
-}));
-
 app.post('/login', async (req, res) => {
-  try {
-    const { identifier, password } = req.body; // `identifier` can be email or phone number
-    let user = await prisma.user.findUnique({ where: { emailAddress: identifier } });
+  console.log(req.body)
 
-    // Check if it's a user by phone number if not found by email
-    if (!user) {
-      user = await prisma.user.findUnique({ where: { phoneNumber: identifier } });
+  const { identifier, password } = req.body; // identifier can be email or phone number
+  let user = await prisma.user.findUnique({ where: { emailAddress: identifier } });
+
+  if (!user) {
+    user = await prisma.user.findUnique({ where: { phoneNumber: identifier } });
+  }
+
+  if (!user) {
+    let technician = await prisma.technician.findUnique({ where: { emailAddress: identifier } });
+
+    if (!technician) {
+      technician = await prisma.technician.findUnique({ where: { phoneNumber: identifier } });
     }
 
-    if (!user) {
-      // If not a user, check for technician credentials
-      let technician = await prisma.technician.findUnique({ where: { emailAddress: identifier } });
-
-      if (!technician) {
-        technician = await prisma.technician.findUnique({ where: { phoneNumber: identifier } });
-      }
-
-      if (!technician) {
-        return res.status(400).json({ message: 'Invalid credentials' });
-      }
-
-      // Compare password for technician
-      const isMatch = await bcrypt.compare(password, technician.password);
-      if (!isMatch) {
-        return res.status(400).json({ message: 'Invalid credentials' });
-      }
-
-      // Generate token for technician
-      const token = jwt.sign(
-        { id: technician.id, area: technician.area, subArea: technician.subArea, userName: technician.userName, role: 'technician' },
-        jwtSecret,
-        { expiresIn: '1h' }
-      );
-
-      // Store token in a secure cookie
-      res.cookie('token', token, {
-        httpOnly: true,
-        secure: true, // Ensures the cookie is sent over HTTPS
-        sameSite: 'Strict', // Prevents CSRF
-        domain: 'fix-it-finder-seven.vercel.app', // Domain for Vercel app
-        maxAge: 3600 * 1000, // Cookie expiration time (1 hour)
-      });
-
-      return res.json({ message: 'Login successful!', redirectTo: `/technician/${technician.userName}` });
+    if (!technician) {
+      return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // Compare password for user
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, technician.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // Generate token for user
-    const token = jwt.sign(
-      { id: user.id, area: user.area, subArea: user.subArea, userName: user.userName, role: 'user' },
-      jwtSecret,
-      { expiresIn: '1h' }
-    );
-
-    // Store token in a secure cookie
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: true, // Ensures the cookie is sent over HTTPS
-      sameSite: 'Strict', // Prevents CSRF
-      domain: 'fix-it-finder-seven.vercel.app', // Domain for Vercel app
-      maxAge: 3600 * 1000, // Cookie expiration time (1 hour)
-    });
-
-    res.json({ message: 'Login successful!', redirectTo: `/User/${user.userName}` });
-
-  } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ message: 'Something went wrong. Please try again later.' });
+    const token = jwt.sign({ id: technician.id,area: technician.area, subArea: technician.subArea,userName:technician.userName, role: 'technician' }, 'your_jwt_secret', { expiresIn: '1h' });
+    activeTokens.push(token);
+    return res.json({ message: 'Login successful!', token, redirectTo: `/technician/${technician.userName}` });
   }
-});
 
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    return res.status(400).json({ message: 'Invalid credentials' });
+  }
+
+  const token = jwt.sign({ id: user.id, area: user.area, subArea: user.subArea, userName:user.userName,role: 'user' }, 'your_jwt_secret', { expiresIn: '1h' });
+  activeTokens.push(token);
+  res.json({ message: 'Login successful!', token, redirectTo: `/User/${user.userName}` });
+});
 
 //log out
 app.post('/logout', (req, res) => {
   const token = req.headers['authorization'];
-  if (!token) {
-      return res.status(400).json({ message: 'No token provided' });
-  }
 
   const tokenIndex = activeTokens.indexOf(token);
   if (tokenIndex > -1) {
-      activeTokens.splice(tokenIndex, 1); // Remove token from activeTokens list
-      return res.json({ message: 'Logout successful!' });
+    activeTokens.splice(tokenIndex, 1);
+    return res.json({ message: 'Logout successful!' });
   }
 
   res.status(400).json({ message: 'Invalid token or already logged out' });
@@ -508,24 +462,48 @@ app.post('/logout', (req, res) => {
 
 function authenticateToken(req, res, next) {
   const token = req.headers['authorization'];
-  if (!token) {
-      return res.status(403).json({ message: 'No token provided' });
-  }
+  if (!token) return res.sendStatus(403);
 
-  // Verify if token exists in activeTokens
+  // Check if token is active
   if (!activeTokens.includes(token)) {
-      return res.status(403).json({ message: 'Invalid or expired token' });
+    return res.status(403).json({ message: 'Invalid or expired token' });
   }
 
-  // Decode and verify JWT
   jwt.verify(token, 'your_jwt_secret', (err, user) => {
-      if (err) {
-          return res.status(403).json({ message: 'Invalid or expired token' });
-      }
-      req.user = user;
-      next();
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
   });
 }
+
+// Example client-side logout
+function logout() {
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+
+const token = getCookie('token');
+
+  fetch('/logout', {
+    method: 'POST',
+    headers: {
+      'Authorization': token,
+      'Content-Type': 'application/json'
+    }
+  }).then(response => response.json())
+    .then(data => {
+      if (data.message === 'Logout successful!') {
+        document.cookie = 'token=; path=/; Secure; HttpOnly; SameSite=Strict; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+
+        window.location.href = '/';
+      } else {
+        alert(data.message);
+      }
+    });
+}
+
 
 app.use((req, res, next) => {
   res.setHeader('Cache-Control', 'no-store');
