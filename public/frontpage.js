@@ -34,8 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (serverUserType === userType) {
                     alert('Login successful!');  // Show success alert
-                   // localStorage.setItem("token", json.token);
-                   document.cookie = `token=${json.token}; path=/; Secure; HttpOnly; SameSite=Strict`;
+                    localStorage.setItem("token", json.token);
                     window.location.href = json.redirectTo;
                 } else {
                     alert('Please correct the user type.');
