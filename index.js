@@ -406,7 +406,7 @@ app.post('/technicianregister', upload.single('profileImage'), async (req, res) 
 });
 
 //log in 
-app.post('https://fix-it-finder-seven.vercel.app/login', async (req, res) => {
+app.post('/login', async (req, res) => {
   console.log(req.body)
 
   const { identifier, password } = req.body; // identifier can be email or phone number
