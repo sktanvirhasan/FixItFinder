@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        fetch('/login', {
+        fetch('https://fix-it-finder-seven.vercel.app/login', {
             method: 'POST',
             body: JSON.stringify({
                 identifier: phoneNumber,
@@ -25,13 +25,20 @@ document.addEventListener('DOMContentLoaded', function() {
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
-            credentials: 'include', // Include cookies with the request
         })
         .then((response) => response.json())
         .then((json) => {
             if (json.message === 'Login successful!') {
-                alert('Login successful!');
-                window.location.href = json.redirectTo;
+                const tokenPayload = JSON.parse(atob(json.token.split('.')[1]));
+                const serverUserType = tokenPayload.role === 'user' ? 'Customer' : 'Technician';
+
+                if (serverUserType === userType) {
+                    alert('Login successful!');  // Show success alert
+                    localStorage.setItem("token", json.token);
+                    window.location.href = json.redirectTo;
+                } else {
+                    alert('Please correct the user type.');
+                }
             } else {
                 alert(json.message);
             }
@@ -46,3 +53,4 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Frontpage is loading");
 });
+

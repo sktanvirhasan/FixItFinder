@@ -406,59 +406,46 @@ app.post('/technicianregister', upload.single('profileImage'), async (req, res) 
 });
 
 //log in 
-
-const cookieParser = require('cookie-parser');
-app.use(cookieParser());
-
 app.post('/login', async (req, res) => {
-    console.log(req.body);
+  console.log(req.body)
 
-    const { identifier, password } = req.body;
-    let user = await prisma.user.findUnique({ where: { emailAddress: identifier } });
+  const { identifier, password } = req.body; // identifier can be email or phone number
+  let user = await prisma.user.findUnique({ where: { emailAddress: identifier } });
 
-    if (!user) {
-        user = await prisma.user.findUnique({ where: { phoneNumber: identifier } });
+  if (!user) {
+    user = await prisma.user.findUnique({ where: { phoneNumber: identifier } });
+  }
+
+  if (!user) {
+    let technician = await prisma.technician.findUnique({ where: { emailAddress: identifier } });
+
+    if (!technician) {
+      technician = await prisma.technician.findUnique({ where: { phoneNumber: identifier } });
     }
 
-    if (!user) {
-        let technician = await prisma.technician.findUnique({ where: { emailAddress: identifier } });
-
-        if (!technician) {
-            technician = await prisma.technician.findUnique({ where: { phoneNumber: identifier } });
-        }
-
-        if (!technician) {
-            return res.status(400).json({ message: 'Invalid credentials' });
-        }
-
-        const isMatch = await bcrypt.compare(password, technician.password);
-        if (!isMatch) {
-            return res.status(400).json({ message: 'Invalid credentials' });
-        }
-
-        const token = jwt.sign(
-            { id: technician.id, area: technician.area, subArea: technician.subArea, userName: technician.userName, role: 'technician' },
-            'your_jwt_secret',
-            { expiresIn: '1h' }
-        );
-        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'strict' });
-        return res.json({ message: 'Login successful!', redirectTo: `/technician/${technician.userName}` });
+    if (!technician) {
+      return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, technician.password);
     if (!isMatch) {
-        return res.status(400).json({ message: 'Invalid credentials' });
+      return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    const token = jwt.sign(
-        { id: user.id, area: user.area, subArea: user.subArea, userName: user.userName, role: 'user' },
-        'your_jwt_secret',
-        { expiresIn: '1h' }
-    );
-    res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'strict' });
-    res.json({ message: 'Login successful!', redirectTo: `/User/${user.userName}` });
-});
+    const token = jwt.sign({ id: technician.id,area: technician.area, subArea: technician.subArea,userName:technician.userName, role: 'technician' }, 'your_jwt_secret', { expiresIn: '1h' });
+    activeTokens.push(token);
+    return res.json({ message: 'Login successful!', token, redirectTo: `/technician/${technician.userName}` });
+  }
 
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    return res.status(400).json({ message: 'Invalid credentials' });
+  }
+
+  const token = jwt.sign({ id: user.id, area: user.area, subArea: user.subArea, userName:user.userName,role: 'user' }, 'your_jwt_secret', { expiresIn: '1h' });
+  activeTokens.push(token);
+  res.json({ message: 'Login successful!', token, redirectTo: `/User/${user.userName}` });
+});
 
 
 //log out
