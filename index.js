@@ -406,9 +406,6 @@ app.post('/technicianregister', upload.single('profileImage'), async (req, res) 
 });
 
 //log in 
-const cookieParser = require('cookie-parser');
-app.use(cookieParser());
-
 app.post('/login', async (req, res) => {
     console.log(req.body);
 
