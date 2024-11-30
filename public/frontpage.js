@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        fetch('https://fix-it-finder-seven.vercel.app/login', {
+        fetch('/login', {
             method: 'POST',
             body: JSON.stringify({
                 identifier: phoneNumber,
