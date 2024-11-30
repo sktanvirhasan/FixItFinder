@@ -12,7 +12,7 @@
         <div class="techportfoliotext">
             <div class="taskbar">
                 <div class="logout">
-                    <button onclick="gotofrontpage()">Log out</button>
+                    <button onclick="logout()">Log out</button>
                 </div>
                 <div class="services">
                     <button onclick="gotoservicepage()">Our services</button>
@@ -22,8 +22,8 @@
             Technician's Portfolio
             <div class="contact">
                 <h3>Contact us <i class="fa-solid fa-envelope"></i></h3>
-                <ul><a href="mailto:eleassarkerre@gmail.com">S K MD TANVIR HASAN</ul>
-                <ul><a href="mailto:tulyrahmy@gmail.com">SHANTO MOZUMDER</a></ul>
+                <ul><a href="mailto:eleassarkerre@gmail.com">Md.Eleas Sarker</ul>
+                <ul><a href="mailto:tulyrahmy@gmail.com">Rahmy Akter Tuly</a></ul>
             </div>
          </div>
          <div class="techprofile">
@@ -85,15 +85,13 @@
         if (!token) {
             // User is not logged in
             alert('You need to log in to edit your profile.');
+            window.location.href = "/frontpage.html";
         } else {
             // User is logged in, redirect to edit page
             window.location.href = `/edittechnician/${userType}/${userName}`;
         }
     }
 </script>
-
-
-
 
 </body>
 </html>
