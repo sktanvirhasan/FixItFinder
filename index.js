@@ -406,7 +406,6 @@ app.post('/technicianregister', upload.single('profileImage'), async (req, res) 
 });
 
 //log in 
-const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
