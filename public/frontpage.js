@@ -16,11 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const API_BASE_URL = window.location.origin.includes('localhost') 
-        ? 'http://localhost:8080' 
-        : 'https://fix-it-finder-seven.vercel.app';
-
-    fetch(`${API_BASE_URL}/login`, {
+        fetch('https://fix-it-finder-seven.vercel.app/login', {
             method: 'POST',
             body: JSON.stringify({
                 identifier: phoneNumber,
