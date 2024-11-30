@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (serverUserType === userType) {
                     alert('Login successful!');  // Show success alert
-                    localStorage.setItem("token", json.token);
+                   // localStorage.setItem("token", json.token);
+                   //document.cookie = `token=${json.token}; path=/; domain=fix-it-finder-seven.vercel.app; secure; SameSite=Strict;`;
                     window.location.href = json.redirectTo;
                 } else {
                     alert('Please correct the user type.');
