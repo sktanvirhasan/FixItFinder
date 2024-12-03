@@ -690,10 +690,11 @@ app.post('/rate-technician', async (req, res) => {
 
 // Start the server
 
-const PORT = BASE_URL.env
+const PORT = process.env.PORT
 app.listen(PORT, () => {
-console.log(`Listening at ${PORT}`)
+  console.log(`Server is running on port ${PORT}`)
 })
+
 
 
 const { v4 } = require('uuid');
