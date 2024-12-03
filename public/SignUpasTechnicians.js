@@ -108,14 +108,12 @@ document.getElementById('file-input').addEventListener('change', function(event)
         fileUrlInput.value = '';
     }
 });
-
 document.querySelector('form').addEventListener('submit', async function(event) {
     event.preventDefault(); // Prevent the default form submission
 
     const formData = new FormData(this); // Collect the form data
 
     try {
-        // Replace 'localhost:8080' with your actual backend URL if deployed
         const response = await fetch("https://fix-it-finder-seven.vercel.app/technicianregister", {
             method: 'POST',
             body: formData,
