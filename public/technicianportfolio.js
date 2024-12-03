@@ -15,43 +15,49 @@ if (fileInput) {
 }
 
 function logout() {
-  const token = localStorage.getItem('token');
-  if (!token) {
-      alert("You're already logged out or not logged in.");
-      window.location.href = "/frontpage.html"; // Redirect to front page
-      return;
-  }
+    const token = localStorage.getItem('token');
+    if (!token || token.trim() === '') {
+        alert("You're already logged out or not logged in.");
+        window.location.href = "/frontpage.html"; // Redirect to front page
+        return;
+    }
 
-  fetch('https://fix-it-finder-seven.vercel.app/logout', {
-      method: 'POST',
-      headers: {
-          'Authorization': token,
-          'Content-Type': 'application/json'
-      }
-  })
-      .then(response => response.json())
-      .then(data => {
-          if (data.message === 'Logout successful!') {
-              localStorage.removeItem('token'); // Clear token
+    fetch('https://fix-it-finder-seven.vercel.app/logout', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`, // Ensure 'Bearer' prefix
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.message === 'Logout successful!') {
+                localStorage.removeItem('token'); // Clear token
 
-              // Prevent back navigation to protected routes
-              history.pushState(null, null, '/');
-              window.addEventListener('popstate', function () {
-                  history.pushState(null, null, '/');
-              });
+                // Prevent back navigation to protected routes
+                history.pushState(null, null, '/');
+                window.addEventListener('popstate', function () {
+                    history.pushState(null, null, '/');
+                });
 
-              window.location.href = "/frontpage.html"; // Redirect to front page
-          } else {
-              alert(data.message);
-              window.location.href = "/frontpage.html"; // Redirect to front page
-          }
-      })
-      .catch(error => {
-          console.error('Logout error:', error);
-          alert('An error occurred. Please try again.');
-          window.location.href = "/frontpage.html"; // Redirect to front page
-      });
+                window.location.href = "/frontpage.html"; // Redirect to front page
+            } else {
+                alert(data.message);
+                window.location.href = "/frontpage.html"; // Redirect to front page
+            }
+        })
+        .catch(error => {
+            console.error('Logout error:', error);
+            alert('An error occurred. Please try again.');
+            window.location.href = "/frontpage.html"; // Redirect to front page
+        });
 }
+
 
 
 function gotoservicepage() {
