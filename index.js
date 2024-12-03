@@ -690,7 +690,7 @@ app.post('/rate-technician', async (req, res) => {
 
 // Start the server
 
-const PORT = process.env.PORT || 8080
+const PORT = BASE_URL.env.PORT
 app.listen(PORT, () => {
 console.log(`Listening at ${PORT}`)
 })
