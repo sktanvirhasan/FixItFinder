@@ -22,7 +22,7 @@ function logout() {
         return;
     }
 
-    fetch('https://fix-it-finder-seven.vercel.app/logout', {
+    fetch('/logout', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`, // Ensure 'Bearer' prefix
