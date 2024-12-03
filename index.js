@@ -379,40 +379,44 @@ app.post('/customerregister', upload.single('profileImage'), async (req, res) =>
 
 
 // Configure Multer to use memory storage
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
+// const storage = multer.memoryStorage();
+const upload = multer({ storage: multer.memoryStorage() });
 
 // Your route
 app.post('/technicianregister', upload.single('profileImage'), async (req, res) => {
-  const { fullName, userName, phoneNumber, emailAddress, password, area, subArea, Profession, religion } = req.body;
-  const profileImage = req.file;
+  try {
+      const { fullName, userName, phoneNumber, emailAddress, password, area, subArea, Profession, religion } = req.body;
+      const profileImage = req.file;
 
-  if (!profileImage) {
-    return res.status(400).json({ error: 'Profile image is required.' });
+      if (!profileImage) {
+          return res.status(400).json({ error: 'Profile image is required.' });
+      }
+
+      // Convert image to binary
+      const profileImageData = profileImage.buffer;
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      await prisma.technician.create({
+          data: {
+              fullName,
+              userName,
+              phoneNumber,
+              emailAddress,
+              password: hashedPassword,
+              area,
+              subArea,
+              Profession,
+              religion,
+              profileImage: profileImageData,
+          },
+      });
+
+      res.json({ message: 'Registration successful!' });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Something went wrong.' });
   }
-
-  // File content as binary
-  const profileImageData = profileImage.buffer; // Access file content from memory
-
-  // Continue with saving the profile image binary data to the database
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  await prisma.technician.create({
-    data: {
-      fullName,
-      userName,
-      phoneNumber,
-      emailAddress,
-      password: hashedPassword,
-      area,
-      subArea,
-      Profession,
-      religion,
-      profileImage: profileImageData
-    }
-  });
-
-  res.json({ message: 'Registration successful!' });
 });
 
 
