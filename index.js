@@ -30,15 +30,15 @@ app.get('/edit-profile', (req, res) => {
 
 
 //store profile picture
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, 'public/uploads/');
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, Date.now() + path.extname(file.originalname));
-//   }
-// });
-// const upload = multer({ storage: storage });
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+const upload = multer({ storage: storage });
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }));
@@ -378,44 +378,32 @@ app.post('/customerregister', upload.single('profileImage'), async (req, res) =>
 });
 
 
-const upload = multer({ storage: multer.memoryStorage() });
-console.log('Upload middleware initialized successfully.');
-
-// Route using the `upload` middleware
+//submit details of technician
 app.post('/technicianregister', upload.single('profileImage'), async (req, res) => {
-    try {
-        const { fullName, userName, phoneNumber, emailAddress, password, area, subArea, Profession, religion } = req.body;
-        const profileImage = req.file;
+  let { fullName, userName, phoneNumber, emailAddress, password, area, subArea, Profession, religion } = req.body;
+  const profileImage = req.file;
 
-        if (!profileImage) {
-            return res.status(400).json({ error: 'Profile image is required.' });
-        }
-
-        const profileImageData = profileImage.buffer; // Store as binary
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        await prisma.technician.create({
-            data: {
-                fullName,
-                userName,
-                phoneNumber,
-                emailAddress,
-                password: hashedPassword,
-                area,
-                subArea,
-                Profession,
-                religion,
-                profileImage: profileImageData,
-            },
-        });
-
-        res.json({ message: 'Registration successful!' });
-    } catch (error) {
-        console.error('Error during registration:', error);
-        res.status(500).json({ error: 'Internal server error.' });
+  // Check if technician already exists
+  const existingTechnician = await prisma.technician.findUnique({ where: { emailAddress } });
+  if (existingTechnician) {
+    return res.status(400).json({ message: 'Technician already exists' });
+  }
+  if (!isValidPhoneNumber(phoneNumber)) {
+    return res.status(400).json({ error: 'Invalid phone number. It must start with one of the allowed prefixes (017, 013, 019, 018, 015, 016) and have 11 digits.' });
+  }
+  if (!isEmailWithPopularDomain(emailAddress)) {
+    return res.status(400).json({ error: 'Invalid email or domain is not popular.' });
+  }
+  password = await bcrypt.hash(password, 10);
+  await prisma.technician.create({
+    data: {
+      fullName, userName, phoneNumber, emailAddress, password,
+      area, subArea, Profession, religion, profileImage: profileImage.path
     }
-});
+  });
 
+  res.json({ message: 'Registration successful!' });
+});
 
 //log in 
 app.post('/login', async (req, res) => {
