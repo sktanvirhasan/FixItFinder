@@ -478,9 +478,14 @@ app.post('/login', async (req, res) => {
 
 //log out
 app.post('/logout', (req, res) => {
-  const token = req.headers['authorization'];
+  let token = req.headers['authorization'];
   if (!token) {
       return res.status(400).json({ message: 'No token provided' });
+  }
+
+  // Remove 'Bearer ' prefix if present
+  if (token.startsWith('Bearer ')) {
+      token = token.slice(7); // Extract the token after 'Bearer '
   }
 
   const tokenIndex = activeTokens.indexOf(token);
@@ -491,6 +496,7 @@ app.post('/logout', (req, res) => {
 
   res.status(400).json({ message: 'Invalid token or already logged out' });
 });
+
 
 function authenticateToken(req, res, next) {
   const token = req.headers['authorization'];
