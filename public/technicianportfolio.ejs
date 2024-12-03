@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/technicianportfolio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Technician's Portfolio</title>
+</head>
+<body>
+    <div class="techportfolio">
+        <div class="techportfoliotext">
+            <div class="taskbar">
+                <div class="logout">
+                    <button onclick="logout()">Log out</button>
+                </div>
+                <div class="services">
+                    <button onclick="gotoservicepage()">Our services</button>
+                </div>
+                
+            </div>
+            Technician's Portfolio
+            <div class="contact">
+                <h3>Contact us <i class="fa-solid fa-envelope"></i></h3>
+                <ul><a href="mailto:eleassarkerre@gmail.com">Md.Eleas Sarker</ul>
+                <ul><a href="mailto:tulyrahmy@gmail.com">Rahmy Akter Tuly</a></ul>
+            </div>
+         </div>
+         <div class="techprofile">
+            <div class="dp">
+                <img src="data:image/jpeg;base64,<%= technician.profileImage.toString('base64') %>" alt="Profile Image">
+            </div>
+           
+            <div class="name">
+                <i class="fa-solid fa-person"></i>
+                <span id="name"><h2 contenteditable="false"><%= technician.fullName %></h2></span>
+            </div>
+            <div class="uname">
+                <i class="fa-solid fa-user"></i>
+                <span id="uname"><h3 contenteditable="false"><%= technician.userName %></h3></span>
+            </div>
+            <div class="cnum">
+                <i class="fa-solid fa-phone"></i>
+                <span id="cnum" contenteditable="false"><%= technician.phoneNumber %></span>
+            </div>
+            <div class="cemail">
+                <i class="fa-solid fa-envelope"></i>
+                <span id="cemail" contenteditable="false"><%= technician.emailAddress %></span>
+            </div>
+            <div class="address">
+               <div class="area">
+                <i class="fa-solid fa-location-pin"></i>Area:
+                <span id="area" contenteditable="false"><%= technician.area %></span>
+               </div>
+               <div class="subarea">
+                <i class="fa-solid fa-location-pin"></i>Sub-Area:
+                <span id="subarea" contenteditable="false"><%= technician.subArea %></span>
+               </div>
+            </div>
+            <div class="religion">
+                <i class="fa-solid fa-synagogue"></i>Religion:
+                <span id="religion" contenteditable="false"><%= technician.religion %></span>
+            </div>
+           
+            <div class="prof">
+                <i class="fa-solid fa-wrench"></i>Profession:
+                <span id="profession" contenteditable="false"><%= technician.Profession %></span>
+            </div>
+
+         </div>
+    </div>
+    <script src="/technicianportfolio.js"></script>
+
+
+    <a href="#" class="edit-profile" onclick="checkLogin('<%= userType.toLowerCase() %>', '<%= technician.userName %>')">Edit Profile</a>
+
+<script>
+    function checkLogin(userType, userName) {
+        // Check if user is logged in
+        const token = localStorage.getItem('token'); // Assuming you store the login token in local storage
+        if (!token) {
+            // User is not logged in
+            alert('You need to log in to edit your profile.');
+            window.location.href = "/frontpage.html";
+        } else {
+            // User is logged in, redirect to edit page
+            window.location.href = `/edittechnician/${userType}/${userName}`;
+        }
+    }
+</script>
+
+</body>
+</html>
