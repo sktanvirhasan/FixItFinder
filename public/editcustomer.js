@@ -177,38 +177,19 @@ async function editcustomer() {
         
         // Delay redirection to show notification
         setTimeout(() => {
-            window.location.href = "/frontpage.html"; // Redirect to the desired page
+            const userName = formData.get('userName'); // Extract username from form data
+            window.location.href = `/User/${userName}`; // Redirect to the desired page
         }, 3000); // Wait for 3 seconds before redirecting
     } else {
         showNotification("Profile update failed. Please try again.", 'error');
     }
 }
 
-
-// Function to handle token and button state
-function buttons() {
-    const token = localStorage.getItem('token'); // Get the token from local storage
-    const saveChangesButton = document.getElementById('saveChanges');
-
-    if (token) {
-        localStorage.removeItem('token'); // Remove token from local storage
-    } else {
-        saveChangesButton.disabled = true; // Disable the saveChanges button
-        alert('You need to log in to edit profile.');
-        window.location.href = "/frontpage.html"; // Show a message
-        return false; // Return false to prevent form submission
-    }
-
-    return true; // Return true if token is present
-}
-
 // Event listener for the Save Changes button
 document.getElementById('saveChanges').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent default form submission
-
-    if (buttons()) { // Check if token exists and continue if valid
+    // Check if token exists and continue if valid
         editcustomer(); // Call the editcustomer function
-    }
 });
 
 
