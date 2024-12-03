@@ -391,7 +391,7 @@ app.post('/customerregister', upload.single('profileImage'), async (req, res) =>
 
 
 //submit details of technician
-app.post('/technicianregister', upload.single('profileImage'), async (req, res) => {
+app.post('https://fix-it-finder-seven.vercel.app/technicianregister', upload.single('profileImage'), async (req, res) => {
   try {
       const { fullName, userName, phoneNumber, emailAddress, password, area, subArea, Profession, religion } = req.body;
       const profileImage = req.file;
