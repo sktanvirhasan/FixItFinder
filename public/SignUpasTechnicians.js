@@ -116,7 +116,7 @@ document.querySelector('form').addEventListener('submit', async function(event) 
 
     try {
         // Replace 'localhost:8080' with your actual backend URL if deployed
-        const response = await fetch("https://fix-it-finder-seven.vercel.app//technicianregister", {
+        const response = await fetch("https://fix-it-finder-seven.vercel.app/technicianregister", {
             method: 'POST',
             body: formData,
         });
