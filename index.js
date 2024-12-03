@@ -474,14 +474,19 @@ app.post('/login', async (req, res) => {
   res.json({ message: 'Login successful!', token, redirectTo: `/User/${user.userName}` });
 });
 
+
+
 //log out
 app.post('/logout', (req, res) => {
   const token = req.headers['authorization'];
+  if (!token) {
+      return res.status(400).json({ message: 'No token provided' });
+  }
 
   const tokenIndex = activeTokens.indexOf(token);
   if (tokenIndex > -1) {
-    activeTokens.splice(tokenIndex, 1);
-    return res.json({ message: 'Logout successful!' });
+      activeTokens.splice(tokenIndex, 1); // Remove token from activeTokens list
+      return res.json({ message: 'Logout successful!' });
   }
 
   res.status(400).json({ message: 'Invalid token or already logged out' });
@@ -489,46 +494,23 @@ app.post('/logout', (req, res) => {
 
 function authenticateToken(req, res, next) {
   const token = req.headers['authorization'];
-  if (!token) return res.sendStatus(403);
+  if (!token) {
+      return res.status(403).json({ message: 'No token provided' });
+  }
 
-  // Check if token is active
+  // Verify if token exists in activeTokens
   if (!activeTokens.includes(token)) {
-    return res.status(403).json({ message: 'Invalid or expired token' });
+      return res.status(403).json({ message: 'Invalid or expired token' });
   }
 
+  // Decode and verify JWT
   jwt.verify(token, 'your_jwt_secret', (err, user) => {
-    if (err) return res.sendStatus(403);
-    req.user = user;
-    next();
-  });
-}
-
-// Example client-side logout
-function logout() {
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-  }
-
-const token = getCookie('token');
-
-  fetch('/logout', {
-    method: 'POST',
-    headers: {
-      'Authorization': token,
-      'Content-Type': 'application/json'
-    }
-  }).then(response => response.json())
-    .then(data => {
-      if (data.message === 'Logout successful!') {
-        document.cookie = 'token=; path=/; Secure; HttpOnly; SameSite=Strict; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-
-        window.location.href = '/';
-      } else {
-        alert(data.message);
+      if (err) {
+          return res.status(403).json({ message: 'Invalid or expired token' });
       }
-    });
+      req.user = user;
+      next();
+  });
 }
 
 
