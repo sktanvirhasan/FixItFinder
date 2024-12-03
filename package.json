@@ -9,7 +9,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "caching": "node index.js",
     "realtime": "node index.js",
-    "prisma:generate": "prisma generate --no-engine",
     "postinstall": "prisma generate"
   },
   "author": "Md. Eleas Sarker",

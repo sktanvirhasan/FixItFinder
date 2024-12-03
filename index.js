@@ -370,11 +370,19 @@ app.post('/customerregister', upload.single('profileImage'), async (req, res) =>
   if (!isEmailWithPopularDomain(emailAddress)) {
     return res.status(400).json({ error: 'Invalid email or domain is not popular.' });
   }
+  const profileImageData = profileImage.buffer; // Get binary data
   password = await bcrypt.hash(password, 10);
   await prisma.user.create({
     data: {
-      fullName, userName, phoneNumber, emailAddress, password,
-      area, subArea, religion, profileImage: profileImage.path
+      fullName,
+      userName,
+      phoneNumber,
+      emailAddress,
+      password,
+      area,
+      subArea,
+      religion,
+      profileImage: profileImageData,
     }
   });
 

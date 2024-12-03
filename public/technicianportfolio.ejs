@@ -28,11 +28,7 @@
          </div>
          <div class="techprofile">
             <div class="dp">
-                <% 
-                    const imagePath = technician.profileImage.replace(/\\/g, '/').replace('public/', '');
-                %>
-                <img src="/<%= imagePath %>" alt="Profile Image">
-
+                <img src="data:image/jpeg;base64,<%= technician.profileImage.toString('base64') %>" alt="Profile Image">
             </div>
            
             <div class="name">

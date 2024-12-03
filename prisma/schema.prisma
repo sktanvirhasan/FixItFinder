@@ -24,7 +24,7 @@ model User  {
   area         String
   subArea      String
   religion     String
-  profileImage String
+  profileImage Bytes
 }
 model technician{
   fullName     String

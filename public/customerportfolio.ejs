@@ -28,10 +28,7 @@
          <div class="techprofile">
             <div class="dp">
                 <!-- Display profile image if available -->
-                <% 
-                    const imagePath = User.profileImage.replace(/\\/g, '/').replace('public/', '');
-                %>
-                <img src="/<%= imagePath %>" alt="Profile Image">
+                <img src="data:image/jpeg;base64,<%= User.profileImage.toString('base64') %>" alt="Profile Image">
             </div>
            
             <div class="name">
