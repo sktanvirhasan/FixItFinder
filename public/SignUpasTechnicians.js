@@ -90,6 +90,7 @@ document.getElementById('file-input').addEventListener('change', function(event)
         document.getElementById('file-url').textContent = fileUrl;
     }
 });
+
 document.getElementById('file-input').addEventListener('change', function(event) {
     const fileLabel = document.getElementById('file-label');
     const fileUrlInput = document.getElementById('file-url');
@@ -100,7 +101,7 @@ document.getElementById('file-input').addEventListener('change', function(event)
         const fileUrl = URL.createObjectURL(file);
 
         console.log(`Selected file: ${fileName}`);
-        console.log(`File URL: ${fileUrl}`); 
+        console.log(`File URL: ${fileUrl}`);
         fileUrlInput.value = fileUrl;
     } else {
         fileLabel.innerHTML = 'Choose an Image';
@@ -112,16 +113,24 @@ document.querySelector('form').addEventListener('submit', async function(event) 
     event.preventDefault(); // Prevent the default form submission
 
     const formData = new FormData(this); // Collect the form data
-    const response = await fetch(this.action, {
-        method: 'POST',
-        body: formData
-    });
 
-    const result = await response.json(); // Parse the JSON response from the server
-    if (response.ok) {
-        alert(result.message); // Show the success message
-        window.location.href = "frontpage.html"; // Redirect to the login page
-    } else {
-        alert("Registration failed. Please try again.");
+    try {
+        // Replace 'localhost:8080' with your actual backend URL if deployed
+        const response = await fetch("https://fix-it-finder-seven.vercel.app//technicianregister", {
+            method: 'POST',
+            body: formData,
+        });
+
+        const result = await response.json(); // Parse the JSON response from the server
+
+        if (response.ok) {
+            alert(result.message); // Show the success message
+            window.location.href = "frontpage.html"; // Redirect to the login page
+        } else {
+            alert("Registration failed. Please try again.");
+        }
+    } catch (error) {
+        console.error("Error during registration:", error); // Log the error for debugging
+        alert("Unable to connect to the server. Please try again later.");
     }
 });
