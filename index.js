@@ -228,7 +228,7 @@ app.get('/edittechnician/:userType/:userName', async (req, res) => {
 app.post('/editcustomer/:userType/:userName', upload.single('profileImage'), async (req, res) => {
   const { fullName, phoneNumber, emailAddress, area, subArea, religion } = req.body;
   const userName = req.params.userName; 
-  const profileImage = req.file ? req.file.path : null;
+  const profileImage = req.file ? req.file.buffer : null; // Access buffer directly
 
   try {
       // Find the existing user
@@ -247,7 +247,7 @@ app.post('/editcustomer/:userType/:userName', upload.single('profileImage'), asy
 
       // Update the user information
       await prisma.User.update({
-          where: { userName: userName },
+          where: { userName },
           data: {
               fullName: fullName || existingUser.fullName,
               phoneNumber: phoneNumber || existingUser.phoneNumber,
@@ -255,7 +255,7 @@ app.post('/editcustomer/:userType/:userName', upload.single('profileImage'), asy
               area: area || existingUser.area,
               subArea: subArea || existingUser.subArea,
               religion: religion || existingUser.religion,
-              profileImage: profileImage || existingUser.profileImage 
+              profileImage: profileImage || existingUser.profileImage,
           },
       });
 
@@ -271,7 +271,7 @@ app.post('/editcustomer/:userType/:userName', upload.single('profileImage'), asy
 app.post('/edittechnician/:userType/:userName', upload.single('profileImage'), async (req, res) => {
   const { fullName, phoneNumber, emailAddress, area, subArea, religion } = req.body;
   const userName = req.params.userName; 
-  const profileImage = req.file ? req.file.path : null;
+  const profileImage = req.file ? req.file.buffer : null; // Access buffer directly
 
   try {
       // Find the existing user
