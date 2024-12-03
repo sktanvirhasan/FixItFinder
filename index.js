@@ -389,7 +389,6 @@ app.post('/customerregister', upload.single('profileImage'), async (req, res) =>
   res.json({ message: 'Registration successful!' });
 });
 
-const url = "https://fix-it-finder-seven.vercel.app/technicianregister";
 app.use(cors());
 app.use(cors({
   origin: "https://fix-it-finder-seven.vercel.app",
@@ -398,7 +397,7 @@ app.use(cors({
 
 
 //submit details of technician
-app.post('https://fix-it-finder-seven.vercel.app/technicianregister', upload.single('profileImage'), async (req, res) => {
+app.post('/technicianregister', upload.single('profileImage'), async (req, res) => {
   try {
       const { fullName, userName, phoneNumber, emailAddress, password, area, subArea, Profession, religion } = req.body;
       const profileImage = req.file;
