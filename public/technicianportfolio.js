@@ -22,7 +22,7 @@ function logout() {
         return;
     }
 
-    fetch('/logout', {
+    fetch('https://fix-it-finder-seven.vercel.app/logout', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`, // Ensure 'Bearer' prefix
@@ -57,6 +57,7 @@ function logout() {
             window.location.href = "/frontpage.html"; // Redirect to front page
         });
 }
+
 
 
 
