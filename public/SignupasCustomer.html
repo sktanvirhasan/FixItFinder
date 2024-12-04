@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixItFinder</title>
+    <link rel="stylesheet" href="signupascustomer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="signupcustomerform">
+         <div class="signupcustomertext">
+            Sign up as Customer
+            <div class="contact">
+                <h3>Contact us<i class="fa-solid fa-envelope"></i></h3>
+                <ul><a href="mailto:eleassarkerre@gmail.com">S K MD TANVIR HASAN</a></ul>
+                <ul><a href="mailto:tulyrahmy@gmail.com">SHANTO MOZUMDER</a></ul>
+            </div>
+         </div>
+         <div class="custoersignupform">
+            <div class="signuppbox">
+                <form method="post" action="/customerregister" enctype="multipart/form-data">
+                <div class="infobox" id="fullname">
+                    <input type="text" name="fullName" class="info-field" placeholder="Full Name" required>
+                </div>
+                <div class="infobox" id="username">
+                    <input type="text" name="userName" class="info-field" placeholder="UserName" required>
+                </div>
+                <div class="infobox" id="phonenumber">
+                    <input type="text" name="phoneNumber" class="info-field" placeholder="Phone Number" required>
+                </div>
+                <div class="infobox" id="email">
+                    <input type="text" name="emailAddress" class="info-field" placeholder="email Address" required>
+                </div>
+                <div class="infobox" id="password">
+                    <input type="password" name="password" class="info-field" placeholder="Password" required>
+                </div>
+                <div class="uploadimg">
+                    <input type="file" name="profileImage" id="file-input" accept="image/*" class="file-input">
+                    <label for="file-input" class="file-label" id="file-label">Choose an Image</label>
+                </div>
+                <input type="text" id="file-url" class="file-url-input" readonly placeholder="The file size must be less than 500 KB">
+                <div class="selctareasubarea">
+                    Area:
+                    <select id="mainArea" name="area">
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Chittagong">Chittagong</option>
+                        <option value="Rajshahi">Rajshahi</option>
+                        <option value="Faridpur">Faridpur</option>
+                        <option value="Gazipur">Gazipur</option>
+                        <option value="Gopalganj">Gopalganj</option>
+                        <option value="Kishoreganj">Kishoreganj</option>
+                        <option value="Madaripur">Madaripur</option>
+                        <option value="Manikganj">Manikganj</option>
+                        <option value="Munshiganj">Munshiganj</option>
+                        <option value="Narayanganj">Narayanganj</option>
+                        <option value="Narsingdi">Narsingdi</option>
+                        <option value="Rajbari">Rajbari</option>
+                        <option value="Shariatpur">Shariatpur</option>
+                        <option value="Tangail">Tangail</option>
+                        <option value="Bogura">Bogura</option>
+                        <option value="Joypurhat">Joypurhat</option>
+                        <option value="Naogaon">Naogaon</option>
+                        <option value="Natore">Natore</option>
+                        <option value="Chapai Nawabganj">Chapai Nawabganj</option>
+                        <option value="Pabna">Pabna</option>
+                        <option value="Sirajganj">Sirajganj</option>
+                        <option value="Bagerhat">Bagerhat</option>
+                        <option value="Chuadanga">Chuadanga</option>
+                        <option value="Jashore">Jashore</option>
+                        <option value="Jhenaidah">Jhenaidah</option>
+                        <option value="Khulna">Khulna</option>
+                        <option value="Kushtia">Kushtia</option>
+                        <option value="Magura">Magura</option>
+                        <option value="Meherpur">Meherpur</option>
+                        <option value="Narail">Narail</option>
+                        <option value="Satkhira">Satkhira</option>
+                        <option value="Jamalpur">Jamalpur</option>
+                        <option value="Mymensingh">Mymensingh</option>
+                        <option value="Netrokona">Netrokona</option>
+                        <option value="Sherpur">Sherpur</option>
+                        <option value="Bandarban">Bandarban</option>
+                        <option value="Brahmanbaria">Brahmanbaria</option>
+                        <option value="Chandpur">Chandpur</option>
+                        <option value="Comilla">Comilla</option>
+                        <option value="Cox's Bazar">Cox's Bazar</option>
+                        <option value="Feni">Feni</option>
+                        <option value="Khagracchari">Khagracchari</option>
+                        <option value="Lakshmipur">Lakshmipur</option>
+                        <option value="Noakhali">Noakhali</option>
+                        <option value="Rangamati">Rangamati</option>
+                        <option value="Dinajpur">Dinajpur</option>
+                        <option value="Gaibandha">Gaibandha</option>
+                        <option value="Kurigram">Kurigram</option>
+                        <option value="Lalmonirhat">Lalmonirhat</option>
+                        <option value="Nilphamari">Nilphamari</option>
+                        <option value="Panchagarh">Panchagarh</option>
+                        <option value="Rangpur">Rangpur</option>
+                        <option value="Thakurgaon">Thakurgaon</option>
+                        <option value="Habiganj">Habiganj</option>
+                        <option value="Moulvibazar">Moulvibazar</option>
+                        <option value="Sunamganj">Sunamganj</option>
+                        <option value="Sylhet">Sylhet</option>
+                        <option value="Barguna">Barguna</option>
+                        <option value="Barishal">Barishal</option>
+                        <option value="Bhola">Bhola</option>
+                        <option value="Jhalokati">Jhalokati</option>
+                        <option value="Patuakhali">Patuakhali</option>
+                        <option value="Pirojpur">Pirojpur</option>
+                    </select>
+                    Sub-Area:
+                    <select id="subArea" name="subArea">
+                    </select>
+                </div>
+                <div class="religion">
+                    Religion:
+                    <select id="religion" name="religion">
+                        <option value="Muslim">Muslim</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Buddhist">Buddhist</option>
+                        <option value="Christian">Christian</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="buttons" id="customer">
+                    <button type="button" id="back" onclick="goToPage()">Back</button>
+                    <button type="submit" id="signup">sign up</button>
+                </div>
+                <div class="coutionmsg">
+                   
+                    <h4>Coution  <i class="fa-solid fa-triangle-exclamation"></i>:</h4>
+                    Please don't share your Password with other
+                </div>
+                </form>
+            </div>
+         </div>
+    </div>
+    <script src="SignupasCustomer.js">
+        async function registerUser() {
+            const response = await fetch('/customerregister', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    // Registration data here
+                })
+            });
+
+            const result = await response.json();
+            alert(result.message);
+        }
+    </script>
+</body>
+</html>
