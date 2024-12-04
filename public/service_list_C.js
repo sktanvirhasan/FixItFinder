@@ -90,7 +90,6 @@ function goBack() {
     document.getElementById('service-search').style.display = 'block';
     document.getElementById('service-man-list').style.display = 'none';
 }
-
 // Navigate to technician portfolio
 function viewPortfolio(userName) {
     window.location.href = `/portfolio?userName=${userName}`;
