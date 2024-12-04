@@ -2,7 +2,7 @@ function searchService() {
     const service = document.getElementById('service-select').value;
     document.getElementById('service-name').textContent = service;
 
-    fetch('http://localhost:8080/search', {
+    fetch('/search', {
         method: 'POST',
         body: JSON.stringify({ service: service }),
         headers: {
@@ -64,7 +64,7 @@ function searchService() {
 function rateTechnician(technicianUserName) {
     const rating = document.getElementById(`rating-select-${technicianUserName}`).value;
     const loged_user = localStorage.getItem('id');
-    fetch('http://localhost:8080/rate-technician', {
+    fetch('/rate-technician', {
         method: 'POST',
         body: JSON.stringify({ technicianUserName, ratingValue: rating ,loged_user}),
         headers: {
