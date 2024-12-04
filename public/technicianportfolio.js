@@ -13,7 +13,6 @@ if (fileInput) {
     }
   });
 }
-
 function logout() {
     const token = localStorage.getItem('token');
     if (!token || token.trim() === '') {
@@ -57,9 +56,6 @@ function logout() {
             window.location.href = "/frontpage.html"; // Redirect to front page
         });
 }
-
-
-
 
 function gotoservicepage() {
 const token = localStorage.getItem('token');
