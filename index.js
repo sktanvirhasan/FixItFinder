@@ -685,6 +685,29 @@ app.listen(PORT, () => {
 
 
 
+app.get('/profile-image/:userName', async (req, res) => {
+  try {
+      const { userName } = req.params;
+      const technician = await prisma.technician.findUnique({
+          where: { userName },
+          select: { profileImage: true },
+      });
+
+      if (!technician || !technician.profileImage) {
+          return res.status(404).json({ message: 'Image not found' });
+      }
+
+      res.set('Content-Type', 'image/jpeg'); // Update based on the actual image type
+      res.send(technician.profileImage);
+  } catch (error) {
+      console.error('Error fetching image:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+
+
 const { v4 } = require('uuid');
 
 app.get('/api', (req, res) => {
