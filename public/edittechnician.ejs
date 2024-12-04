@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixItFinder - Edit Profile</title>
+    <link rel="stylesheet" href="/edit.css"> <!-- Adjusted path to CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="signupcustomerform">
+         <div class="signupcustomertext">
+            Edit Your Profile
+            <div class="contact">
+                <h3>Contact us <i class="fa-solid fa-envelope"></i></h3>
+                <ul><a href="mailto:eleassarkerre@gmail.com">Md. Eleas Sarker</a></ul>
+                <ul><a href="mailto:tulyrahmy@gmail.com">Rahmy Akter Tuly</a></ul>
+            </div>
+         </div>
+         <div class="customersignupform"> <!-- Corrected class name -->
+            <div class="signuppbox">
+                <form id="updateForm" method="POST" action="/edittechnician/technician/<%= technician.userName %>" enctype="multipart/form-data">
+                    <div class="infobox" id="fullname">
+                        <label for="fullName" class="label">Full Name:</label>
+                        <input type="text" name="fullName" id="fullName" class="info-field" value="<%= technician.fullName %>" required>
+                    </div>
+                    <div class="infobox" id="username">
+                        <label for="userName" class="label">Username:</label>
+                        <input type="text" name="userName" id="userName" class="info-field" value="<%= technician.userName %>" readonly>
+                    </div>
+                    <div class="infobox" id="phonenumber">
+                        <label for="phoneNumber" class="label">Phone Number:</label>
+                        <input type="text" name="phoneNumber" id="phoneNumber" class="info-field" value="<%= technician.phoneNumber %>" required>
+                    </div>
+                    <div class="infobox" id="email">
+                        <label for="emailAddress" class="label">Email Address:</label>
+                        <input type="email" name="emailAddress" id="emailAddress" class="info-field" value="<%= technician.emailAddress %>" required>
+                    </div>
+                    <div class="uploadimg">
+                        <input type="file" name="profileImage" id="file-input" accept="image/*" class="file-input">
+                        <label for="file-input" class="file-label" id="file-label">Choose an Image</label>
+                    </div>
+                    <input type="text" id="file-url" class="file-url-input" readonly placeholder="The file size must be less than 500 KB">
+                    <div class="selctareasubarea">
+                        <label for="mainArea">Area:</label>
+                        <select id="mainArea" name="area">
+                            <option value="Dhaka" <%= technician.area === 'Dhaka' ? 'selected' : '' %>>Dhaka</option>
+                            <option value="Chittagong" <%= technician.area === 'Chittagong' ? 'selected' : '' %>>Chittagong</option>
+                            <option value="Rajshahi" <%= technician.area === 'Rajshahi' ? 'selected' : '' %>>Rajshahi</option>
+                            <option value="Faridpur" <%= technician.area === 'Faridpur' ? 'selected' : '' %>>Faridpur</option>
+                            <option value="Gazipur" <%= technician.area === 'Gazipur' ? 'selected' : '' %>>Gazipur</option>
+                            <option value="Gopalganj" <%= technician.area === 'Gopalganj' ? 'selected' : '' %>>Gopalganj</option>
+                            <option value="Kishoreganj" <%= technician.area === 'Kishoreganj' ? 'selected' : '' %>>Kishoreganj</option>
+                            <option value="Madaripur" <%= technician.area === 'Madaripur' ? 'selected' : '' %>>Madaripur</option>
+                            <option value="Manikganj" <%= technician.area === 'Manikganj' ? 'selected' : '' %>>Manikganj</option>
+                            <option value="Munshiganj" <%= technician.area === 'Munshiganj' ? 'selected' : '' %>>Munshiganj</option>
+                            <option value="Narayanganj" <%= technician.area === 'Narayanganj' ? 'selected' : '' %>>Narayanganj</option>
+                            <option value="Narsingdi" <%= technician.area === 'Narsingdi' ? 'selected' : '' %>>Narsingdi</option>
+                            <option value="Rajbari" <%= technician.area === 'Rajbari' ? 'selected' : '' %>>Rajbari</option>
+                            <option value="Shariatpur" <%= technician.area === 'Shariatpur' ? 'selected' : '' %>>Shariatpur</option>
+                            <option value="Tangail" <%= technician.area === 'Tangail' ? 'selected' : '' %>>Tangail</option>
+                            <option value="Bogura" <%= technician.area === 'Bogura' ? 'selected' : '' %>>Bogura</option>
+                            <option value="Joypurhat" <%= technician.area === 'Joypurhat' ? 'selected' : '' %>>Joypurhat</option>
+                            <option value="Naogaon" <%= technician.area === 'Naogaon' ? 'selected' : '' %>>Naogaon</option>
+                            <option value="Natore" <%= technician.area === 'Natore' ? 'selected' : '' %>>Natore</option>
+                            <option value="Chapai Nawabganj" <%= technician.area === 'Chapai Nawabganj' ? 'selected' : '' %>>Chapai Nawabganj</option>
+                            <option value="Pabna" <%= technician.area === 'Pabna' ? 'selected' : '' %>>Pabna</option>
+                            <option value="Sirajganj" <%= technician.area === 'Sirajganj' ? 'selected' : '' %>>Sirajganj</option>
+                            <option value="Bagerhat" <%= technician.area === 'Bagerhat' ? 'selected' : '' %>>Bagerhat</option>
+                            <option value="Chuadanga" <%= technician.area === 'Chuadanga' ? 'selected' : '' %>>Chuadanga</option>
+                            <option value="Jashore" <%= technician.area === 'Jashore' ? 'selected' : '' %>>Jashore</option>
+                            <option value="Jhenaidah" <%= technician.area === 'Jhenaidah' ? 'selected' : '' %>>Jhenaidah</option>
+                            <option value="Khulna" <%= technician.area === 'Khulna' ? 'selected' : '' %>>Khulna</option>
+                            <option value="Kushtia" <%= technician.area === 'Kushtia' ? 'selected' : '' %>>Kushtia</option>
+                            <option value="Magura" <%= technician.area === 'Magura' ? 'selected' : '' %>>Magura</option>
+                            <option value="Meherpur" <%= technician.area === 'Meherpur' ? 'selected' : '' %>>Meherpur</option>
+                            <option value="Narail" <%= technician.area === 'Narail' ? 'selected' : '' %>>Narail</option>
+                            <option value="Satkhira" <%= technician.area === 'Satkhira' ? 'selected' : '' %>>Satkhira</option>
+                            <option value="Jamalpur" <%= technician.area === 'Jamalpur' ? 'selected' : '' %>>Jamalpur</option>
+                            <option value="Mymensingh" <%= technician.area === 'Mymensingh' ? 'selected' : '' %>>Mymensingh</option>
+                            <option value="Netrokona" <%= technician.area === 'Netrokona' ? 'selected' : '' %>>Netrokona</option>
+                            <option value="Sherpur" <%= technician.area === 'Sherpur' ? 'selected' : '' %>>Sherpur</option>
+                            <option value="Bandarban" <%= technician.area === 'Bandarban' ? 'selected' : '' %>>Bandarban</option>
+                            <option value="Brahmanbaria" <%= technician.area === 'Brahmanbaria' ? 'selected' : '' %>>Brahmanbaria</option>
+                            <option value="Chandpur" <%= technician.area === 'Chandpur' ? 'selected' : '' %>>Chandpur</option>
+                            <option value="Comilla" <%= technician.area === 'Comilla' ? 'selected' : '' %>>Comilla</option>
+                            <option value="Cox's Bazar" <%= technician.area === 'Cox\'s Bazar' ? 'selected' : '' %>>Cox's Bazar</option>
+                            <option value="Feni" <%= technician.area === 'Feni' ? 'selected' : '' %>>Feni</option>
+                            <option value="Khagracchari" <%= technician.area === 'Khagracchari' ? 'selected' : '' %>>Khagracchari</option>
+                            <option value="Lakshmipur" <%= technician.area === 'Lakshmipur' ? 'selected' : '' %>>Lakshmipur</option>
+                            <option value="Noakhali" <%= technician.area === 'Noakhali' ? 'selected' : '' %>>Noakhali</option>
+                            <option value="Rangamati" <%= technician.area === 'Rangamati' ? 'selected' : '' %>>Rangamati</option>
+                            <option value="Dinajpur" <%= technician.area === 'Dinajpur' ? 'selected' : '' %>>Dinajpur</option>
+                            <option value="Gaibandha" <%= technician.area === 'Gaibandha' ? 'selected' : '' %>>Gaibandha</option>
+                            <option value="Kurigram" <%= technician.area === 'Kurigram' ? 'selected' : '' %>>Kurigram</option>
+                            <option value="Lalmonirhat" <%= technician.area === 'Lalmonirhat' ? 'selected' : '' %>>Lalmonirhat</option>
+                            <option value="Nilphamari" <%= technician.area === 'Nilphamari' ? 'selected' : '' %>>Nilphamari</option>
+                            <option value="Panchagarh" <%= technician.area === 'Panchagarh' ? 'selected' : '' %>>Panchagarh</option>
+                            <option value="Rangpur" <%= technician.area === 'Rangpur' ? 'selected' : '' %>>Rangpur</option>
+                            <option value="Thakurgaon" <%= technician.area === 'Thakurgaon' ? 'selected' : '' %>>Thakurgaon</option>
+                            <option value="Habiganj" <%= technician.area === 'Habiganj' ? 'selected' : '' %>>Habiganj</option>
+                            <option value="Moulvibazar" <%= technician.area === 'Moulvibazar' ? 'selected' : '' %>>Moulvibazar</option>
+                            <option value="Sunamganj" <%= technician.area === 'Sunamganj' ? 'selected' : '' %>>Sunamganj</option>
+                            <option value="Sylhet" <%= technician.area === 'Sylhet' ? 'selected' : '' %>>Sylhet</option>
+                            <option value="Barguna" <%= technician.area === 'Barguna' ? 'selected' : '' %>>Barguna</option>
+                            <option value="Barishal" <%= technician.area === 'Barishal' ? 'selected' : '' %>>Barishal</option>
+                            <option value="Bhola" <%= technician.area === 'Bhola' ? 'selected' : '' %>>Bhola</option>
+                            <option value="Jhalokati" <%= technician.area === 'Jhalokati' ? 'selected' : '' %>>Jhalokati</option>
+                            <option value="Patuakhali" <%= technician.area === 'Patuakhali' ? 'selected' : '' %>>Patuakhali</option>
+                            <option value="Pirojpur" <%= technician.area === 'Pirojpur' ? 'selected' : '' %>>Pirojpur</option>
+               
+                        </select>
+                        <label for="subArea">Sub-Area:</label>
+                        <select id="subArea" name="subArea">
+                            <!-- This will be populated dynamically by JavaScript -->
+                        </select>
+                        <input type="hidden" id="subAreaValue" value="<%= technician.subArea ? technician.subArea : '' %>">
+                        
+                    </div>
+                    <div class="religion">
+                        <label for="religion">Religion:</label>
+                        <select id="religion" name="religion">
+                            <option value="Muslim" <%= technician.religion === 'Muslim' ? 'selected' : '' %>>Muslim</option>
+                            <option value="Hindu" <%= technician.religion === 'Hindu' ? 'selected' : '' %>>Hindu</option>
+                            <option value="Buddhist" <%= technician.religion === 'Buddhist' ? 'selected' : '' %>>Buddhist</option>
+                            <option value="Christian" <%= technician.religion === 'Christian' ? 'selected' : '' %>>Christian</option>
+                            <option value="Other" <%= technician.religion === 'Other' ? 'selected' : '' %>>Other</option>
+                        </select>
+                    </div>
+                    <div class="buttons" id="customer">
+                        <button type="submit" id="saveChanges">Save Changes</button>
+                    </div>
+                    <!-- Optional: Display error or success message -->
+                    <div id="message" class="message"></div>
+                </form>
+            </div>
+         </div>
+    </div>
+    <div id="notification" class="notification" style="display: none;"></div>
+    <script src="/edittechnician.js"></script>
+</body>
+</html>
