@@ -1,54 +1,84 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-image: url('./images/image2.jpg');
-    background-size: cover;
-  }
-  
-  .container {
-    width: 400px;
-    margin: 100px auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    text-align: center;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-  }
-  
-  input[type="text"],
-  input[type="password"],
-  select {
-    width: 100%;
-    padding: 10px;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('./images/image2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.container {
+  width: 400px; /* Keeps the container width consistent */
+  margin: 100px auto; /* Centers the container vertically and horizontally */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8); /* Adds transparency for a modern look */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for a 3D effect */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px; /* Adds spacing below the heading */
+  font-size: 24px; /* Makes the heading slightly larger */
+  color: #333; /* Subtle dark color for readability */
+}
+
+.form-group {
+  margin-bottom: 20px; /* Adds consistent spacing between fields */
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px; /* Adds spacing below labels */
+  font-size: 14px;
+  color: #333; /* Matches the heading color for consistency */
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%; /* Ensures the input spans the container width */
+  padding: 10px; /* Adds space inside the input box */
+  font-size: 16px; /* Matches font size with the button for consistency */
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Rounds the corners */
+  box-sizing: border-box; /* Ensures padding doesn't affect the width */
+}
+
+button {
+  display: block;
+  width: 100%; /* Ensures the button spans the container width */
+  padding: 12px; /* Slightly larger padding for emphasis */
+  background-color: #007bff; /* Bootstrap primary blue color */
+  color: #fff; /* White text for contrast */
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    width: 100%; /* Ensures the input spans the container width */
+    padding: 10px; /* Adds space inside the input box */
+    font-size: 16px; /* Matches font size with the button for consistency */
     border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
+    border-radius: 5px; /* Rounds the corners */
+    box-sizing: border-box; /* Ensures padding doesn't affect the width */
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+    outline: none; /* Removes the default outline */
+    border-color: #007bff; /* Highlights border on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Adds glow effect */
+}
