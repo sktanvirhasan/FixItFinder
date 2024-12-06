@@ -1,0 +1,206 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.service-search, .service-man-list {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.service-list {
+    margin: 20px 0;
+}/* Ensure the body takes the full height and has a background image */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-image: url('./images/image.jpg'); /* Update the path to your image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.service-man-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.service-man-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.service-man-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Style for service man mobile */
+.service-man-mobile {
+    color: gray;
+}
+
+/* Style for the main containers */
+.service-search, .service-man-list {
+    text-align: center;
+    margin-top: 50px;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background for readability */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.service-list {
+    margin: 20px 0;
+}
+
+/* Style the select input */
+#service-select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Style the buttons */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#service-man-ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#service-man-ul li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+    background: rgba(255, 255, 255, 0.9); /* Slightly more opaque for list items */
+    border-radius: 5px;
+}
+
+
+#service-select {
+    padding: 10px;
+    font-size: 16px;
+}
+
+#search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#service-man-ul {
+    list-style-type: none;
+    padding: 0;
+}
+.backbutton{
+    margin-left: 580px;
+    margin-top: 30px;
+    height:50px;
+    width:80px
+    
+}
+#service-man-ul li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+
+
+select[id^="rating-select-"] {
+    width: 100px;
+    height: 40px;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    background: linear-gradient(to right, #e3f2fd, #ffffff);
+    color: #004085;
+    font-size: 18px;
+    padding: 8px 12px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+
+select[id^="rating-select-"]:hover {
+    border-color: #888; 
+    background-color: #fff;
+}
+
+select[id^="rating-select-"]:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+    border-color: #007bff;  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+button.rate-button {
+    width: 150px; /* Compact button size */
+    height: 40px; /* Adjusted height for visibility */
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient for a modern look */
+    border: none; /* No default border */
+    border-radius: 20px; /* Rounded edges for a soft look */
+    color: #fff; /* White text for contrast */
+    font-size: 14px; /* Clean, readable font size */
+    font-weight: bold; /* Emphasize the text */
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+button.rate-button:hover {
+    background: linear-gradient(to right, #2575fc, #6a11cb); /* Reverse gradient on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+}
+
+button.rate-button:active {
+    transform: translateY(2px); /* Simulate press effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduced shadow on click */
+}
