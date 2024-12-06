@@ -42,7 +42,7 @@ function searchService() {
                             <span class="service-man-name">${man.fullName}</span>
                             <span class="service-man-mobile">${man.phoneNumber}</span>
                             <span class="rating">Rating: ${man.ratings}/5</span>
-                            <button class="portfolio-button" onclick="viewPortfolio('${man.userName}')">See Details</button>
+                            <button class="portfolio-button" onclick="window.location.href='/portfolio?userName=${man.userName}'">See Details</button>
                             <select id="rating-select-${man.userName}">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -89,8 +89,4 @@ function rateTechnician(technicianUserName) {
 function goBack() {
     document.getElementById('service-search').style.display = 'block';
     document.getElementById('service-man-list').style.display = 'none';
-}
-// Navigate to technician portfolio
-function viewPortfolio(userName) {
-    window.location.href = `/portfolio?userName=${userName}`;
 }
