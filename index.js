@@ -28,21 +28,8 @@ app.get('/edit-profile', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'edit.html')); // Serve custo_edit.html
 });
 
-
-//store profile picture
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, 'public/uploads/');
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, Date.now() + path.extname(file.originalname));
-//   }
-// });
-// const upload = multer({ storage: storage });
-
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
-
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }));
@@ -65,7 +52,6 @@ function isValidPhoneNumber(phoneNumber) {
   const phoneRegex = /^(017|013|019|018|015|016)\d{8}$/; //set phone number to 11 digit with specific prefix
   return phoneRegex.test(phoneNumber);
 }
-
 
 //check email is valid or not
 function isEmailWithPopularDomain(email) {
@@ -144,9 +130,6 @@ app.get('/signupastechnicians', (req, res) => {
 app.get('/signupascustomer', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'SignupasCustomer.html'))
 })
-
-
-
 
 
 app.get('/User/:userName', async (req, res) => {
@@ -394,8 +377,6 @@ app.use(cors({
   origin: "https://fix-it-finder-seven.vercel.app",
 }));
 
-
-
 //submit details of technician
 app.post('/technicianregister', upload.single('profileImage'), async (req, res) => {
   try {
@@ -430,7 +411,6 @@ app.post('/technicianregister', upload.single('profileImage'), async (req, res) 
       res.status(500).json({ error: 'Internal server error.' });
   }
 });
-
 
 //log in 
 app.post('/login', async (req, res) => {
@@ -474,8 +454,6 @@ app.post('/login', async (req, res) => {
   res.json({ message: 'Login successful!', token, redirectTo: `/User/${user.userName}` });
 });
 
-
-
 //log out
 app.post('/logout', (req, res) => {
   let token = req.headers['authorization'];
@@ -496,7 +474,6 @@ app.post('/logout', (req, res) => {
 
   res.status(400).json({ message: 'Invalid token or already logged out' });
 });
-
 
 function authenticateToken(req, res, next) {
   const token = req.headers['authorization'];
@@ -541,27 +518,19 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // Step 1: Send verification code via email
+// Step 1: Send verification code via email
 app.post('/send-verification-code', async (req, res) => {
-  const { email_phone, verification_method } = req.body;
+  const { email_phone } = req.body;
 
   // Generate a 6-digit random verification code
   const verificationCode = Math.floor(100000 + Math.random() * 900000);
   verificationCodes[email_phone] = verificationCode;
 
   try {
-    let toAddress;
-
-    // Assuming email is used for now
-    if (verification_method === 'email') {
-      toAddress = email_phone;  // Use the email entered by user
-    } else {
-      return res.status(400).json({ message: 'Phone verification not supported yet.' });
-    }
-
     // Send the verification code via email
     await transporter.sendMail({
       from: 'tulyrahmy@gmail.com',
-      to: toAddress,
+      to: email_phone, // Always send to the email entered
       subject: 'FixItFinder Password Reset Verification Code',
       text: `Your verification code is ${verificationCode}.`
     });
@@ -677,13 +646,10 @@ app.post('/rate-technician', async (req, res) => {
 });
 
 // Start the server
-
 const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
 })
-
-
 
 app.get('/profile-image/:userName', async (req, res) => {
   try {
@@ -704,9 +670,6 @@ app.get('/profile-image/:userName', async (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
   }
 });
-
-
-
 
 const { v4 } = require('uuid');
 
