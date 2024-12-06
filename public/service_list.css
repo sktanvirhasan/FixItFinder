@@ -136,17 +136,23 @@ button {
     cursor: pointer;
 }
 
+
+
+
 select[id^="rating-select-"] {
-    width: 580px;        
-    height: 30px;    
-    border: 1px solid #ccc;
-    border-radius: 5px; 
-    background-color: #f9f9f9; 
-    color: #333;
-    padding: 5px;  
-    font-size: 16px;
-    cursor: pointer; 
+    width: 100px;
+    height: 40px;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    background: linear-gradient(to right, #e3f2fd, #ffffff);
+    color: #004085;
+    font-size: 18px;
+    padding: 8px 12px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
 }
+
 
 select[id^="rating-select-"]:hover {
     border-color: #888; 
@@ -159,28 +165,42 @@ select[id^="rating-select-"]:focus {
     border-color: #007bff;  
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 button.rate-button {
-    width: 150px;
-    height: 40px;
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    border: none;
-    border-radius: 20px;
-    color: #fff;
-    font-size: 14px;
-    font-weight: bold;
+    width: 150px; /* Compact button size */
+    height: 40px; /* Adjusted height for visibility */
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient for a modern look */
+    border: none; /* No default border */
+    border-radius: 20px; /* Rounded edges for a soft look */
+    color: #fff; /* White text for contrast */
+    font-size: 14px; /* Clean, readable font size */
+    font-weight: bold; /* Emphasize the text */
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
 
 button.rate-button:hover {
-    background: linear-gradient(to right, #2575fc, #6a11cb);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to right, #2575fc, #6a11cb); /* Reverse gradient on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
 }
 
 button.rate-button:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(2px); /* Simulate press effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduced shadow on click */
 }
